@@ -2,10 +2,11 @@ namespace Project
 {
     public class Item
     {
-        public static string name;
-        public static int[,] abillity; // 어빌리티 단계 (3개)
+        public static string? name;
+        public static int[,]? abillity; // 어빌리티 단계 (3개)
         public static int enchant; // 강화 단계
         public static int attack; // 공격력 수치
+        public static int mana; // 마력 수치
         Enchant enhance = new Enchant();
         Probability prob = new Probability();
 
@@ -18,12 +19,12 @@ namespace Project
 
         public void Enchant()
         {
-            enhance.Enhance(enchant);
+            enhance.Enhance();
         }
 
         public void Ability()
         {
-            prob.Ability(abillity);
+            prob.Ability();
         }
 
         public void SelectItemName(Item item)
@@ -47,10 +48,15 @@ namespace Project
                         name = "에야스루나";
                         return;
                     case 5:
-                        ItemNamePrint();
-                        Console.Write("아이템 이름 : ");
-                        name = Console.ReadLine();
-                        return;
+                        do{
+                        
+                            ItemNamePrint();
+                            Console.Write("아이템 이름 : ");
+                            name = Console.ReadLine();
+                            if (name != ""){
+                                return;
+                            }
+                        } while (true);
                     default:
                         break;
                 }
@@ -91,6 +97,7 @@ namespace Project
                     return;
                 case 1:
                     Enchant();
+                    System.Console.WriteLine(enchant);
                     break;
                 case 2:
                     Ability();

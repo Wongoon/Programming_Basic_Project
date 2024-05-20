@@ -8,7 +8,7 @@ namespace Project
             this.prob = 75;
         }
 
-        public void Ability(int[,] ability)
+        public void Ability()
         {
 
         }
