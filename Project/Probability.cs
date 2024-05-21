@@ -6,6 +6,7 @@ internal class Probability
     int prob;
     readonly int MAX_PROB = 75;
     readonly int MIN_PROB = 25;
+
     public Probability()
     {
         this.prob = 75;
@@ -14,8 +15,52 @@ internal class Probability
     public void Ability()
     {
         RandomMinus();
-        PrintAbilities();
-        Console.ReadKey();
+        do
+        {
+            PrintAbilities();
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
+                    Prob(0);
+                    break;
+                case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
+                    Prob(1);
+                    break;
+                case ConsoleKey.D3:
+                case ConsoleKey.NumPad3:
+                    Prob(2);
+                    break;
+                case ConsoleKey.Backspace:
+                    return;
+                default:
+                    break;
+            }
+        } while (true);
+
+
+    }
+
+    private void Prob(int num)
+    {
+        Random r = new Random();
+        if (Item.abilityIndex[num] < 10)
+        {
+            int n = r.Next(1, 101);
+            if (n <= prob)
+            {
+                Item.abillites[num, Item.abilityIndex[num]] = 1;
+                prob = (MIN_PROB >= prob) ? MIN_PROB : prob - 10;
+                Item.abilityCount[num]++;
+            }
+            else
+            {
+                Item.abillites[num, Item.abilityIndex[num]] = -1;
+                prob = (MAX_PROB <= prob) ? MAX_PROB : prob + 10;
+            }
+            Item.abilityIndex[num]++;
+        }
     }
 
     private void RandomMinus()
@@ -46,7 +91,7 @@ internal class Probability
 
     private void FailPrint()
     {
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.ForegroundColor = ConsoleColor.Black;
         Console.Write("◇");
         Console.ForegroundColor = ConsoleColor.White;
     }
@@ -95,8 +140,28 @@ internal class Probability
                 default:
                     break;
             }
-            if (i < 9)
-                Console.Write("　");
+            Console.Write("　");
+        }
+        if (num < 2)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("　" + Item.abilityCount[num]);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        else
+        {
+            if (Item.abilityCount[num] >= 5){
+                Console.ForegroundColor = ConsoleColor.Red;
+                if (Item.minusAbility == "공격력"){
+                    Item.attack -= 10;
+                }
+                else {
+                    Item.mana -= 10;
+                }
+            }
+                
+            Console.WriteLine("　" + Item.abilityCount[num]);
+            Console.ForegroundColor = ConsoleColor.White;
         }
         Console.WriteLine();
     }

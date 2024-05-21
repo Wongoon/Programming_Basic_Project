@@ -5,9 +5,19 @@ public class Item
     public static string? name;
     public static int[,]? abillites; // 어빌리티 단계 (3개)
     public static string? minusAbility;
+    public static int[] abilityCount;
+    public static int[] abilityIndex;
     public static int enchant; // 강화 단계
     public static int attack; // 공격력 수치
     public static int mana; // 마력 수치
+    public static readonly int[] enchantFigure = [
+        0, 8, 16, 24, 32, 40,
+        48, 57, 66, 75, 84,
+        93, 102, 112, 122, 132,
+        145, 158, 172, 186, 201,
+        217, 234, 268, 303, 339,
+        411, 555, 843, 1419, 2571
+    ];
     Enchant enhance = new Enchant();
     Probability prob = new Probability();
 
@@ -15,8 +25,20 @@ public class Item
     {
         abillites = new int[3, 10];
         minusAbility = "";
+        abilityCount = new int[3];
+        abilityIndex = new int[3];
         enchant = 0;
         attack = 0;
+        mana = 0;
+    }
+    
+    public static void EnchantFigure(){
+        attack = enchantFigure[enchant];
+        mana = enchantFigure[enchant];
+    }
+
+    public static void ProbFigure(){
+        // Probability.cs에서 공격력, 마력 올리는 메서드
     }
 
     public void Enchant()

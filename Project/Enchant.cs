@@ -19,6 +19,7 @@ internal class Enchant
 
     public void Enhance()
     {
+        int count = 0;
         do
         {
             ConsoleKey key = EnhancePrint();
@@ -31,12 +32,17 @@ internal class Enchant
                     Item.enchant++;
                     prob = prob_arg[Item.enchant];
                     enhance = true;
+                    count = 0;
+                    Item.EnchantFigure();
                 }
                 else
                 {
-                    if (Item.enchant % 5 != 0 && Item.enchant < 25)
+                    if (Item.enchant % 5 != 0 && Item.enchant < 25){
                         Item.enchant--;
-                    prob = prob_arg[Item.enchant];
+                        count++;
+                    }
+                    prob = count == 2 ? 100 : prob_arg[Item.enchant];
+                    Item.EnchantFigure();
                     enhance = false;
                 }
             }
@@ -55,6 +61,9 @@ internal class Enchant
 
             Print.First();
             Console.WriteLine("강화 단계 : " + Item.enchant + "Lv.\n");
+            if (prob == 100){
+                System.Console.WriteLine("Chance Time!\n");
+            }
             Console.WriteLine("강화 확률 : " + prob + "%");
             Print.Last();
 
