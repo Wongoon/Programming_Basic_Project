@@ -1,19 +1,16 @@
 ﻿using System;
-
-namespace Project
+namespace Project;
+public class Print
 {
-    public class Print
+    public static void First()
     {
-        public static void First()
-        {
-            Console.Clear();
-            Console.WriteLine("*----------------*----------------*");
-            Console.WriteLine();
-        }
-        public static void Last()
-        {
-            Console.WriteLine();
-            Console.WriteLine("*----------------*----------------*");
-        }
+        Console.Clear();
+        Console.WriteLine("*------------------------------*------------------------------*");
+        Console.WriteLine();
+    }
+    public static void Last()
+    {
+        Console.WriteLine();
+        Console.WriteLine("*------------------------------*------------------------------*");
     }
 }
