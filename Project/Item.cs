@@ -1,4 +1,5 @@
 using System;
+using System.Net.Mail;
 namespace Project;
 public class Item
 {
@@ -31,14 +32,29 @@ public class Item
         attack = 0;
         mana = 0;
     }
-    
-    public static void EnchantFigure(){
+
+    public static void EnchantFigure()
+    {
         attack = enchantFigure[enchant];
         mana = enchantFigure[enchant];
     }
 
-    public static void ProbFigure(){
-        // Probability.cs에서 공격력, 마력 올리는 메서드
+    public void ProbFigure()
+    {
+        if (prob.ProbAbility())
+        {
+            attack += abilityCount[0] * 10;
+            mana += abilityCount[1] * 10;
+
+            if (abilityCount[2] >= 5) {
+                if (minusAbility == "공격력") {
+                    attack -= 10;
+                }
+                else if (minusAbility == "　마력") {
+                    mana -= 10;
+                }
+            }
+        }
     }
 
     public void Enchant()
@@ -156,11 +172,14 @@ public class Item
 
     public ConsoleKey ItemInformation()
     {
+        EnchantFigure();
+        ProbFigure();
+
         Print.First();
-        Console.WriteLine(name + " ( + " + enchant + " )");
+        Console.WriteLine(name + " ( + " + enchant + " ) ( " + abilityCount[0] + " / " + abilityCount[1] + " / " + abilityCount[2] + " )");
         Console.WriteLine();
-        Console.WriteLine("공격력 : " + attack);
-        Console.WriteLine("마　력 : " + mana);
+        Console.WriteLine("공격력 : " + attack + " ( " + enchantFigure[enchant] + " + " + (abilityCount[0] * 10) + (abilityCount[2] >= 5 && minusAbility == "공격력" ? " - 10 )" : " - 0 )"));
+        Console.WriteLine("마　력 : " + mana + " ( " + enchantFigure[enchant] + " + " + (abilityCount[1] * 10) + (abilityCount[2] >= 5 && minusAbility == "　마력" ? " - 10 )" : " - 0 )"));
         Print.Last();
         Console.WriteLine("Press the Enter");
         return Console.ReadKey().Key;

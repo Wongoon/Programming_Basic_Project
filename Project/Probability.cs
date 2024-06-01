@@ -1,20 +1,27 @@
 using System;
+using System.Globalization;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 
 namespace Project;
 internal class Probability
 {
     int prob;
+    bool figure;
     readonly int MAX_PROB = 75;
     readonly int MIN_PROB = 25;
 
     public Probability()
     {
         this.prob = 75;
+        this.figure = false;
     }
 
     public void Ability()
     {
-        RandomMinus();
+        if (Item.minusAbility.Equals("")){
+            RandomMinus();
+        }
         do
         {
             PrintAbilities();
@@ -34,12 +41,49 @@ internal class Probability
                     break;
                 case ConsoleKey.Backspace:
                     return;
+                case ConsoleKey.R:
+                    ResetAbility();
+                    break;
                 default:
                     break;
             }
         } while (true);
 
 
+    }
+
+    public bool ProbAbility(){
+        int num = 0;
+        for (int i = 0; i < 3; i++) {
+            if (Item.abilityIndex[i] == 10) {
+                num++;
+            }
+        }
+        if (num == 3) {
+            this.figure = true;
+        }
+        return figure;
+    }
+
+    private void ResetAbility()
+    {
+        for (int i = 0; i < Item.abilityCount.Length; i++)
+        {
+            Item.abilityCount[i] = 0;
+        }
+        for (int i = 0; i < Item.abilityIndex.Length; i++)
+        {
+            Item.abilityIndex[i] = 0;
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                Item.abillites[i, j] = 0;
+            }
+        }
+        this.prob = 75;
+        Item.EnchantFigure();
     }
 
     private void Prob(int num)
@@ -152,14 +196,7 @@ internal class Probability
         {
             if (Item.abilityCount[num] >= 5){
                 Console.ForegroundColor = ConsoleColor.Red;
-                if (Item.minusAbility == "공격력"){
-                    Item.attack -= 10;
-                }
-                else {
-                    Item.mana -= 10;
-                }
             }
-                
             Console.WriteLine("　" + Item.abilityCount[num]);
             Console.ForegroundColor = ConsoleColor.White;
         }

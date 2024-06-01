@@ -33,7 +33,6 @@ internal class Enchant
                     prob = prob_arg[Item.enchant];
                     enhance = true;
                     count = 0;
-                    Item.EnchantFigure();
                 }
                 else
                 {
@@ -42,7 +41,6 @@ internal class Enchant
                         count++;
                     }
                     prob = count == 2 ? 100 : prob_arg[Item.enchant];
-                    Item.EnchantFigure();
                     enhance = false;
                 }
             }
