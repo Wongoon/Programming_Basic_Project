@@ -1,6 +1,6 @@
 ﻿using System;
 namespace Project;
-public class Print
+public static class Print
 {
     public static void First()
     {
