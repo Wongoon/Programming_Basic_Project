@@ -135,7 +135,7 @@ internal class Probability
 
     private void FailPrint()
     {
-        Console.ForegroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.DarkGray;
         Console.Write("◇");
         Console.ForegroundColor = ConsoleColor.White;
     }
