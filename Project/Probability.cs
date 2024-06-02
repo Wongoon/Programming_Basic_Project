@@ -124,6 +124,7 @@ internal class Probability
         PrintCenter();
 
         Print.Last();
+        Console.WriteLine("R : 초기화");
     }
 
     private void SuccessPrint(ConsoleColor color)
