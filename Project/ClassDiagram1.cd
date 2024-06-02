@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Project.Enchant">
-    <Position X="2.5" Y="2" Width="1.75" />
+    <Position X="4.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAIAAEACA=</HashCode>
       <FileName>Enchant.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Project.Item">
-    <Position X="0.5" Y="3.5" Width="1.75" />
+    <Position X="2.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>QAAAAEQACAAAAgAAAgAACAEAAAgEAACAAAIEIAEEBCA=</HashCode>
       <FileName>Item.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Project.Probability">
-    <Position X="4.5" Y="2" Width="1.75" />
+    <Position X="6.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>QAAAAgAAYAQAAkAAAQAAAAAAAAQAAAAAABQACEAEBAE=</HashCode>
       <FileName>Probability.cs</FileName>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Project.Print">
-    <Position X="2.5" Y="4.75" Width="1.75" />
+    <Position X="8.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Print.cs</FileName>
